@@ -1,7 +1,7 @@
 {
-  "name": "trcpluginreacttemplate",
+  "name": "bulkupdate",
   "version": "1.0.0",
-  "description": "React template for TRC Plugins",
+  "description": "Trc plugin for bulk updating",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,8 +16,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "trc-analyze": "^1.6.0",
-    "trc-react": "file:../2/trc-react/trc-react-1.0.0.tgz",
-    "trc-sheet": "^1.9.0"
+    "trc-react": "^1.0.0",
+    "trc-sheet": "^1.11.0"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
