@@ -1,0 +1,28 @@
+{
+  "name": "trcpluginreacttemplate",
+  "version": "1.0.0",
+  "description": "React template for TRC Plugins",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "npm run build && node node_modules/trc.runplugin/index.js dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^16.8.14",
+    "@types/react-dom": "^16.8.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "trc-analyze": "^1.6.0",
+    "trc-react": "file:../2/trc-react/trc-react-1.0.0.tgz",
+    "trc-sheet": "^1.9.0"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "source-map-loader": "^0.2.4",
+    "trc.runplugin": "^1.4.4",
+    "typescript": "^3.4.5"
+  }
+}
