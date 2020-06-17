@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Voter-Science Bulk Uploader</title>
-    </head>
-    <body>
-            <script>
-                var _sheetRefGlobal = null;
-                var _trcGlobal = null;
-            </script>
-        
-        <div id="example"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Voter-Science Bulk Uploader</title>
 
-        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-        
-        <!-- Dependencies -->
-        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <link rel="stylesheet" href="https://trcanvasdata.blob.core.windows.net/code/pluginglobal.css">
+  </head>
+  <body>
+    <script>
+      var _sheetRefGlobal = null;
+    </script>
 
-        <!-- Main -->
-        <script src="./bundle.js"></script>
+    <div id="app"></div>
 
-        <script src="https://trcanvasdata.blob.core.windows.net/code2/plugin.js"></script>
-        <script>
-                // Well known entry point called by hosting infrastructure 
-               function PluginMain(sheetRef, opts) {      
-                    // alert('loaded:' + sheetRef);
-                    _sheetRefGlobal = sheetRef;        
-                   window.mainMajor.setSheetRef(sheetRef);
-               }
-        </script> 
-    </body>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Dependencies -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+
+    <!-- Main -->
+    <script src="./bundle.js"></script>
+
+    <script src="https://trcanvasdata.blob.core.windows.net/code2/plugin.js"></script>
+    <script>
+      // Well known entry point called by hosting infrastructure
+      function PluginMain(sheetRef, opts) {
+        // alert('loaded:' + sheetRef);
+        _sheetRefGlobal = sheetRef;
+        window.mainMajor.setSheetRef(sheetRef);
+      }
+    </script>
+  </body>
 </html>
