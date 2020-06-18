@@ -1,73 +1,89 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
-import * as XC from 'trc-httpshim/xclient'
-import * as common from 'trc-httpshim/common'
-import * as core from 'trc-core/core'
-import * as trcSheet from 'trc-sheet/sheet'
+import { SheetContainer } from 'trc-react/dist/SheetContainer';
 
-import { SheetContainer, IMajorState } from 'trc-react/dist/SheetContainer'
-import { VrdbLookup, IVoter } from './components/VrdbLookup'
-
-import * as bcl from 'trc-analyze/collections'
-import { PluginLink } from "trc-react/dist/PluginLink";
-import { ColumnNames } from "trc-sheet/sheetContents";
-
-
-import { CsvMatchInput} from 'trc-react/dist/CsvMatchInput';
+import { Copy } from 'trc-react/dist/common/Copy';
+import { CsvMatchInput } from 'trc-react/dist/CsvMatchInput';
 import { ListColumns } from 'trc-react/dist/ListColumns';
+import { Panel } from 'trc-react/dist/common/Panel';
+import { PluginShell } from 'trc-react/dist/PluginShell';
 
-declare var _trcGlobal: IMajorState;
+// Lets somebody lookup a voter, and then answer questions about them.
+// See all answers in Audit.
 
-// Lets somebody lookup a voter, and then answer questions about them. 
-// See all answers in Audit. 
-export class App extends React.Component<{}, {
-    voter: IVoter // if undefined, still picking a voter. 
-}>
-{
-    public constructor(props: any) {
-        super(props);
+interface IVoter {
+  RecId: string;
+  FirstName?: string;
+  LastName?: string;
+  Birthdate?: Date;
+  PrecinctName?: string;
+  LegislativeDistrict?: number;
+}
 
-        this.state = {
-            voter: undefined
-        };
-        this.renderBody1 = this.renderBody1.bind(this);
-        this.selectVoter = this.selectVoter.bind(this);
-    }
-    private selectVoter(record: IVoter) {
-        this.setState({
-            voter: record
-        });
-    }
+interface IState {
+  voter: IVoter; // if undefined, still picking a voter.
+}
 
-    private renderBody1() {
-        {
-            return <div>
-                <h2>Bulk Uploader</h2>            
-                <div>This lets you specify a CSV to bulk update values in the current sheet.</div>
-                <div>Column names for the CSV must match "RecId" (the primary key) and possible editable columns:</div>
-                <ListColumns Include={ci => !ci.IsReadOnly}></ListColumns>
+export class App extends React.Component<{}, IState> {
+  public constructor(props: any) {
+    super(props);
 
-                <CsvMatchInput></CsvMatchInput>
-             </div>
-        }
-    }
-
-    render() {
-        return <div>
-            <SheetContainer
-                onReady={this.renderBody1}
-                fetchContents={true}
-                requireTop={true}>
-            </SheetContainer>
-        </div>
-
+    this.state = {
+      voter: undefined,
     };
+
+    this.renderBody1 = this.renderBody1.bind(this);
+    this.selectVoter = this.selectVoter.bind(this);
+  }
+
+  private selectVoter(record: IVoter) {
+    this.setState({
+      voter: record,
+    });
+  }
+
+  private renderBody1() {
+    return (
+      <Panel>
+        <Copy>
+          <p>
+            This lets you specify a CSV to bulk update values in the current
+            sheet.
+          </p>
+          <p>
+            Column names for the CSV must match "RecId" (the primary key) and
+            possible editable columns:
+          </p>
+        </Copy>
+
+        <ListColumns Include={(ci) => !ci.IsReadOnly} />
+
+        <CsvMatchInput />
+      </Panel>
+    );
+  }
+
+  render() {
+    return (
+      <PluginShell
+        description={
+          <p>
+            This lets you specify a CSV to bulk update values in the current
+            sheet.
+          </p>
+        }
+        title="Bulk Uploader"
+      >
+        {this.renderBody1()}
+      </PluginShell>
+    );
+  }
 }
 
 ReactDOM.render(
-    <div>
-        <App></App>
-    </div>,
-    document.getElementById("example")
+  <SheetContainer fetchContents={true} requireTop={true}>
+    <App />
+  </SheetContainer>,
+  document.getElementById('app')
 );
