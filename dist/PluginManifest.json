@@ -2,8 +2,7 @@
   "Id": "BulkUpdate",
   "Name": "BulkUpdate",
   "Author": "Voter-Science",
-  "Website": "https://github.com/Voter-Science/SetTopology",
-  "HelpLink": "https://blog.voter-science.com/2017/06/12/how-to-filter-lists/",
+  "Website": "https://github.com/Voter-Science/bulkupdate",  
   "Description": "Bulk update values",
   "Version": "1.0.0",
   "Tags": ["manage", "_hidden"]
